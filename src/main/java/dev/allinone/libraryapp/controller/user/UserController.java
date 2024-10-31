@@ -1,12 +1,10 @@
 package dev.allinone.libraryapp.controller.user;
 
 import dev.allinone.libraryapp.dto.user.request.UserCreateRequest;
+import dev.allinone.libraryapp.dto.user.request.UserUpdateRequest;
 import dev.allinone.libraryapp.dto.user.response.UserResponse;
 import org.springframework.jdbc.core.simple.JdbcClient;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -42,5 +40,23 @@ class UserController {
                 }).list();
     }
 
+    @PutMapping("/user")
+    void updateUser(@RequestBody UserUpdateRequest request) {
+        jdbcClient.sql("""
+                        update user set name = :name where id = :id;    
+                        """)
+                .param("name", request.name())
+                .param("id", request.id())
+                .update();
+    }
+
+    @DeleteMapping("/user")
+    void deleteUser(String name) {
+        jdbcClient.sql("""
+                        delete from user where name = :name;
+                        """)
+                .param("name", name)
+                .update();
+    }
 
 }

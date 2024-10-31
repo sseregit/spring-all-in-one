@@ -1,7 +1,7 @@
 package dev.allinone.libraryapp.controller.calculator;
 
-import dev.allinone.libraryapp.controller.dto.calculator.request.CalculatorAddRequest;
-import dev.allinone.libraryapp.controller.dto.calculator.request.CalculatorMultiplyRequest;
+import dev.allinone.libraryapp.dto.calculator.request.CalculatorAddRequest;
+import dev.allinone.libraryapp.dto.calculator.request.CalculatorMultiplyRequest;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;

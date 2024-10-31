@@ -1,4 +1,4 @@
-package dev.allinone.libraryapp.domain;
+package dev.allinone.libraryapp.domain.user;
 
 import java.util.Objects;
 

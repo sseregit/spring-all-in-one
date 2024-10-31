@@ -42,6 +42,17 @@ class UserController {
 
     @PutMapping("/user")
     void updateUser(@RequestBody UserUpdateRequest request) {
+        boolean isUserNotExist = jdbcClient.sql("""
+                        select * from user where id = :id;
+                        """)
+                .param("id", request.id())
+                .query((rs, rowNum) -> 0)
+                .list().isEmpty();
+
+        if (isUserNotExist) {
+            throw new IllegalArgumentException();
+        }
+
         jdbcClient.sql("""
                         update user set name = :name where id = :id;    
                         """)
@@ -52,6 +63,17 @@ class UserController {
 
     @DeleteMapping("/user")
     void deleteUser(String name) {
+        boolean isUserNotExist = jdbcClient.sql("""
+                        select * from user where name = :name;
+                        """)
+                .param("name", name)
+                .query((rs, rowNum) -> 0)
+                .list().isEmpty();
+
+        if (isUserNotExist) {
+            throw new IllegalArgumentException();
+        }
+
         jdbcClient.sql("""
                         delete from user where name = :name;
                         """)

@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-class CalculatorController {
+record CalculatorController() {
 
     @GetMapping("/add")
     int addTwoNumbers(CalculatorAddRequest request) {

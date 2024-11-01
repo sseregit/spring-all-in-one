@@ -1,5 +1,8 @@
 package dev.allinone.libraryapp.service.book;
 
+import dev.allinone.libraryapp.domain.book.Book;
+import dev.allinone.libraryapp.domain.book.BookRepository;
+import dev.allinone.libraryapp.dto.book.BookCreateRequest;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -11,7 +14,7 @@ public class BookService {
         this.bookRepository = bookRepository;
     }
 
-    public void saveBook() {
-        bookRepository.saveBook();
+    public void saveBook(BookCreateRequest request) {
+        bookRepository.save(new Book(request.name()));
     }
 }

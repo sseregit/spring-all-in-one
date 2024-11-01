@@ -1,6 +1,6 @@
 package dev.allinone.libraryapp.config;
 
-import dev.allinone.libraryapp.repository.user.UserRepository;
+import dev.allinone.libraryapp.repository.user.UserJdbcRepository;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.core.simple.JdbcClient;
@@ -9,7 +9,7 @@ import org.springframework.jdbc.core.simple.JdbcClient;
 public class UserConfiguration {
 
     @Bean
-    public UserRepository userRepository(JdbcClient jdbcClient) {
-        return new UserRepository(jdbcClient);
+    public UserJdbcRepository userRepository(JdbcClient jdbcClient) {
+        return new UserJdbcRepository(jdbcClient);
     }
 }

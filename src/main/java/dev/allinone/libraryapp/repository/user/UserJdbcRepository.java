@@ -5,11 +5,11 @@ import org.springframework.jdbc.core.simple.JdbcClient;
 
 import java.util.List;
 
-public class UserRepository {
+public class UserJdbcRepository {
 
     private final JdbcClient jdbcClient;
 
-    public UserRepository(JdbcClient jdbcClient) {
+    public UserJdbcRepository(JdbcClient jdbcClient) {
         this.jdbcClient = jdbcClient;
     }
 

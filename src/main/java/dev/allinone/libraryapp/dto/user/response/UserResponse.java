@@ -9,6 +9,10 @@ public record UserResponse(
 ) {
 
     public UserResponse(Long id, User user) {
-        this(id, user.name(), user.age());
+        this(id, user.getName(), user.getAge());
+    }
+
+    public UserResponse(User user) {
+        this(user.getId(), user.getName(), user.getAge());
     }
 }

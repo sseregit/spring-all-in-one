@@ -4,17 +4,14 @@ import dev.allinone.libraryapp.dto.user.request.UserCreateRequest;
 import dev.allinone.libraryapp.dto.user.request.UserUpdateRequest;
 import dev.allinone.libraryapp.dto.user.response.UserResponse;
 import dev.allinone.libraryapp.repository.user.UserRepository;
-import org.springframework.jdbc.core.simple.JdbcClient;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-public class UserService {
-
-    private final UserRepository userRepository;
-
-    public UserService(JdbcClient jdbcClient) {
-        userRepository = new UserRepository(jdbcClient);
-    }
+@Service
+public record UserService(
+        UserRepository userRepository
+) {
 
     public void saveUser(UserCreateRequest request) {
         userRepository.saveUser(request.name(), request.age());

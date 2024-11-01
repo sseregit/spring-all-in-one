@@ -9,7 +9,7 @@ import org.springframework.jdbc.core.simple.JdbcClient;
 public class UserConfiguration {
 
     @Bean
-    public UserJdbcRepository userRepository(JdbcClient jdbcClient) {
+    public UserJdbcRepository userJdbcRepository(JdbcClient jdbcClient) {
         return new UserJdbcRepository(jdbcClient);
     }
 }

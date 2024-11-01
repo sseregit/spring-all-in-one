@@ -2,11 +2,9 @@ package dev.allinone.libraryapp.repository.user;
 
 import dev.allinone.libraryapp.dto.user.response.UserResponse;
 import org.springframework.jdbc.core.simple.JdbcClient;
-import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-@Repository
 public class UserRepository {
 
     private final JdbcClient jdbcClient;

@@ -9,9 +9,13 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public record UserService(
-        UserRepository userRepository
-) {
+public class UserService {
+
+    private final UserRepository userRepository;
+
+    public UserService(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
 
     public void saveUser(UserCreateRequest request) {
         userRepository.saveUser(request.name(), request.age());

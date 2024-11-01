@@ -7,9 +7,13 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public record UserRepository(
-        JdbcClient jdbcClient
-) {
+public class UserRepository {
+
+    private final JdbcClient jdbcClient;
+
+    public UserRepository(JdbcClient jdbcClient) {
+        this.jdbcClient = jdbcClient;
+    }
 
     public void saveUser(String name, Integer age) {
         jdbcClient.sql("""

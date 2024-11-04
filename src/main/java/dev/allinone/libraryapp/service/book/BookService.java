@@ -4,7 +4,6 @@ import dev.allinone.libraryapp.domain.book.Book;
 import dev.allinone.libraryapp.domain.book.BookRepository;
 import dev.allinone.libraryapp.domain.user.User;
 import dev.allinone.libraryapp.domain.user.UserRepository;
-import dev.allinone.libraryapp.domain.user.loanhistory.UserLoanHistory;
 import dev.allinone.libraryapp.domain.user.loanhistory.UserLoanHistoryRepository;
 import dev.allinone.libraryapp.dto.book.request.BookCreateRequest;
 import dev.allinone.libraryapp.dto.book.request.BookLoanRequest;
@@ -42,8 +41,7 @@ public class BookService {
         User user = userRepository.findByName(request.userName())
                 .orElseThrow(IllegalArgumentException::new);
 
-        userLoanHistoryRepository.save(new UserLoanHistory(user, book.getName()));
-
+        user.loanBook(book.getName());
     }
 
     @Transactional
@@ -51,10 +49,8 @@ public class BookService {
         User user = userRepository.findByName(request.userName())
                 .orElseThrow(IllegalArgumentException::new);
 
-        UserLoanHistory history = userLoanHistoryRepository.findByUserIdAndBookName(user.getId(), request.bookName())
-                .orElseThrow(IllegalArgumentException::new);
+        user.returnBook(request.bookName());
 
-        history.doReturn();
     }
 
 }

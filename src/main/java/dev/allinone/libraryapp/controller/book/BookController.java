@@ -2,8 +2,10 @@ package dev.allinone.libraryapp.controller.book;
 
 import dev.allinone.libraryapp.dto.book.request.BookCreateRequest;
 import dev.allinone.libraryapp.dto.book.request.BookLoanRequest;
+import dev.allinone.libraryapp.dto.book.request.BookReturnRequest;
 import dev.allinone.libraryapp.service.book.BookService;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -21,4 +23,10 @@ record BookController(
     void loanBook(@RequestBody BookLoanRequest request) {
         bookService.loanBook(request);
     }
+
+    @PutMapping("/book/return")
+    void returnBook(@RequestBody BookReturnRequest request) {
+        bookService.returnBook(request);
+    }
+
 }

@@ -8,6 +8,7 @@ import dev.allinone.libraryapp.domain.user.loanhistory.UserLoanHistory;
 import dev.allinone.libraryapp.domain.user.loanhistory.UserLoanHistoryRepository;
 import dev.allinone.libraryapp.dto.book.request.BookCreateRequest;
 import dev.allinone.libraryapp.dto.book.request.BookLoanRequest;
+import dev.allinone.libraryapp.dto.book.request.BookReturnRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -44,4 +45,16 @@ public class BookService {
         userLoanHistoryRepository.save(new UserLoanHistory(user.getId(), book.getName()));
 
     }
+
+    @Transactional
+    public void returnBook(BookReturnRequest request) {
+        User user = userRepository.findByName(request.userName())
+                .orElseThrow(IllegalArgumentException::new);
+
+        UserLoanHistory history = userLoanHistoryRepository.findByUserIdAndBookName(user.getId(), request.bookName())
+                .orElseThrow(IllegalArgumentException::new);
+
+        history.doReturn();
+    }
+
 }

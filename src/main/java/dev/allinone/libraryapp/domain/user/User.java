@@ -1,7 +1,10 @@
 package dev.allinone.libraryapp.domain.user;
 
+import dev.allinone.libraryapp.domain.user.loanhistory.UserLoanHistory;
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -14,6 +17,9 @@ public class User {
     private String name;
 
     private Integer age;
+
+    @OneToMany(mappedBy = "user")
+    private List<UserLoanHistory> userLoanHistories = new ArrayList<>();
 
     protected User() {
     }
